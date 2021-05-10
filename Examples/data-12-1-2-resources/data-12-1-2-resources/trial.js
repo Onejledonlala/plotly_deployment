@@ -1,0 +1,1 @@
+Plotly.newPlot('plotMe',[{x: [20,40,33],y: [16,32,55]}])
