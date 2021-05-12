@@ -37,6 +37,7 @@ function buildMetadata(sample) {
     // Filter the data for the object with the desired sample number
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
     var result = resultArray[0];
+    // console.log(result)
     // Use d3 to select the panel with id of `#sample-metadata`
     var PANEL = d3.select("#sample-metadata");
 
@@ -121,12 +122,45 @@ function buildCharts(sample) {
         r: 75,
         b: 100,
         t: 100,
-        pad: 2
+        pad: 6
       },
       hovermode: 'closest'
     };
 
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout)
+
+    // 4. Create the trace for the gauge chart.
+    var wfreq = data.metadata.filter(meta => meta.id == sample)[0].wfreq; 
+    // console.log(wfreq);
+    
+    var gaugeData = [{
+      value: wfreq,
+      type: "indicator",
+      mode: "gauge+number",
+      title: {text: "<b>Belly Button Washing Frequency</b><br>Scrubs Per Week</br>"},
+      gauge: {
+        axis: { range: [null, 10], tickwidth: "2" },
+        bar: { color: "black" },
+        bgcolor: "white",
+        borderwidth: 1,
+        bordercolor: "black",
+        steps:[
+          {range: [0, 2], color: "red"},
+          {range: [2, 4], color: "orange"},
+          {range: [4, 6], color: "yellow"},
+          {range: [6, 8], color: "lightgreen"},
+          {range: [8, 10], color: "green"}
+        ]
+      }
+    }];
+
+    // 5. Create the layout for the gauge chart.
+    var gaugeLayout = { 
+      width: 510, height: 500, margin: { t: 0, b: 0 }
+    };
+
+    // 6. Use Plotly to plot the gauge data and layout.
+    Plotly.newPlot('gauge', gaugeData, gaugeLayout);
   });
 }
