@@ -67,7 +67,7 @@ function buildCharts(sample) {
 
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    result.sample_values.reverse((a,b) => parseInt(a) - parseInt(b));
+    result.sample_values.sort((a, b) => parseInt(b) - parseInt(a));
     var otu_ids = result.otu_ids;
     var otu_labels = result.otu_labels
     var sample_values = result.sample_values
@@ -77,7 +77,6 @@ function buildCharts(sample) {
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
     
-
     var yticks = otu_ids.slice(0, 10).reverse().map(otu => 'OTU ' + otu)
     var xvalues = sample_values.slice(0,10).reverse()
     var barlabels = result.otu_labels.slice(0, 10).reverse();
