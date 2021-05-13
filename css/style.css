@@ -1,0 +1,22 @@
+body {
+    color: #18181a;
+}
+
+.jumbotron {
+    background-image: url("../images/Cells.jpg");
+    background-size: 100% 100%;
+    text-align: center;
+    color: floralwhite;
+}
+
+.col-md-12 {
+    border: solid 5px rgba(231, 43, 115, 0.37);
+  }
+
+.col-md-2 {
+    border: solid 5px rgba(231, 43, 115, 0.37);
+}
+
+.col-md-5 {
+    border: solid 5px rgba(231, 43, 115, 0.37);
+}
